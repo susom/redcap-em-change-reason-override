@@ -1,0 +1,58 @@
+{
+    "name": "ChangeReasonOverride",
+    "namespace": "Stanford\\ChangeReasonOverride",
+    "description": "An EM that alters the change reason functionality to include a dropdown list and a visualization of selection choices",
+    "documentation": "README.md",
+    "authors": [
+        {
+            "name": "Jordan Schultz",
+            "email": "jmschult@stanford.edu",
+            "institution": "Stanford Medicine"
+        }
+    ],
+    "permissions": [
+        "redcap_data_entry_form"
+    ],
+    "enable-every-page-hooks-on-system-pages": true,
+    "links": {
+        "project": [
+            {
+                "name": "Change Reason Visualization",
+                "icon": "gear",
+                "url": "pages/visualization.php"
+            }
+        ],
+        "control-center": [
+        ]
+    },
+    "no-auth-pages": [
+    ],
+    "project-settings": [
+        {
+            "key": "choices",
+            "name": "<b>Change reason choices</b><br><i>These options will replace the textarea field in a dropdown menu when prompted.<br>Please specify options in a comma delimited list with one option per line</i>",
+            "required": true,
+            "type": "textarea"
+        },
+        {
+            "key": "enable_other",
+            "name": "<b>Include other option</b><br><i>Checking this box will allow an other option to be selected in addition to the list of possible change reasons specified above</i>",
+            "required": false,
+            "type": "checkbox"
+        }
+    ],
+    "system-settings": [
+        {
+            "key": "enable-system-debug-logging",
+            "name": "<b>Enable Debug Logging (system-wide)</b><i>(optional)</i> Requires installation and configuration of emLogger",
+            "required": false,
+            "type": "checkbox"
+        }
+    ],
+    "compatibility": {
+        "php-version-min": "7.0",
+        "php-version-max": "",
+        "redcap-version-min": "",
+        "redcap-version-max": ""
+    }
+}
