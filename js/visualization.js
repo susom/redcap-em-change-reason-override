@@ -14,7 +14,6 @@ const parseChoices = (type, choices) => {
     if (type === 'Other') {
         return Object.keys(choices).reduce((obj, k) => {
             let dec = decodeURI(k);
-            console.log(dec)
             if (dec.includes("Other")) {
                 dec = dec.replace("Other_", "");
                 obj[dec] = choices[k];
