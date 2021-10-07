@@ -39,7 +39,7 @@ $choices = $module->getChoices();
 </div>
 <br>
 <div style="width: 98%; padding: 10px; ">
-    <pre id="code_display">
+    <pre id="code_display" style="font-size: 12px;">
     </pre>
 </div>
 <?php
