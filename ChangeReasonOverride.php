@@ -21,6 +21,23 @@ class ChangeReasonOverride extends AbstractExternalModule
     }
 
     /**
+     * Checks whether the external module setting for other is true or false
+     * @return Boolean
+     */
+    public function checkOther()
+    {
+        try {
+            $settings = ExternalModules::getProjectSettingsAsArray($this->PREFIX, PROJECT_ID, false);
+            if ($settings['enable_other']['value'])
+                return true;
+            return false;
+        } catch (\Exception $e) {
+            $this->emError($e);
+            return;
+        }
+    }
+
+    /**
      * Function that injects necessary info into the client before render
      * @throws \Exception
      */

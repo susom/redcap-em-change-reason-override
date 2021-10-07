@@ -36,7 +36,7 @@
         },
         {
             "key": "enable_other",
-            "name": "<b>Include other option</b><br><i>Checking this box will allow an other option to be selected in addition to the list of possible change reasons specified above</i>",
+            "name": "<b>Include other option</b><br><i>Checking this box will allow an other option to be selected in addition to the list of possible change reasons specified above. Selecting other will allow a user to input a reason not present on the list of possible choices. </i>",
             "required": false,
             "type": "checkbox"
         }

@@ -6,7 +6,8 @@ Config options include:
 - `choices`
   - List of choices to display in the dropdown selection menu (comma delimited list)
 - `enable_other`
-  - Checkbox to add an `other` option to the selection options
+  - Checkbox to add an `other` option to the selection options.
+  - When selected, `other` will render an optional input field for the user to describe the reason for change
 
 
 Configuration example:
