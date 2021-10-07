@@ -19,7 +19,7 @@ $choices = $module->getChoices();
         is zero.
     </p>
 </div>
-<div style="width: 98%; border:solid 1px; padding: 10px; ">
+<div style="width: 98%; padding: 10px; ">
     <div id="error" class="alert alert-danger hidden" role="alert">
         No results were found. Please check entries on the logging page to determine if any change reasons were
         submitted.
@@ -30,12 +30,17 @@ $choices = $module->getChoices();
 <?php
     if($module->checkOther()) {
 ?>
-<div style="width: 98%; border:solid 1px; padding: 10px; ">
+<div style="width: 98%;  padding: 10px; ">
     <div id="error_other" class="alert alert-danger hidden" role="alert">
         No results were found. Please check entries on the logging page to determine if any change reasons were
         submitted.
     </div>
     <canvas id="otherChart" width="200" height="75"></canvas>
+</div>
+<br>
+<div style="width: 98%; padding: 10px; ">
+    <pre id="code_display">
+    </pre>
 </div>
 <?php
     }

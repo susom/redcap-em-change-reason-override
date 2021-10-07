@@ -1,9 +1,13 @@
 $(document).ready(function () {
     //choices injected from backend
-    let otherChoices = parseChoices('Other', choices);
-    let regularChoices = parseChoices('', choices);
-    generateVisualization(regularChoices, otherChoices);
-
+    if(choices){
+        let otherChoices = parseChoices('Other', choices);
+        let regularChoices = parseChoices('', choices);
+        generateVisualization(regularChoices, otherChoices);
+        $("#code_display").html(JSON.stringify({'Other':otherChoices,'Reg':regularChoices}, null, 2));
+    }else{
+        $('#error').removeClass('hidden');
+    }
 });
 
 const parseChoices = (type, choices) => {
