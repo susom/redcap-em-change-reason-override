@@ -15,17 +15,23 @@ const parseChoices = (type, choices) => {
         return Object.keys(choices).reduce((obj, k) => {
             let dec = decodeURI(k);
             if (dec.includes("Other")) {
-                dec = dec.replace("Other_", "");
+                dec = dec.replace("ro_Other_", "");
                 obj[dec] = choices[k];
             }
+
             return obj;
+
         }, {});
     } else {
         return Object.keys(choices).reduce((obj, k) => {
             let dec = decodeURI(k);
-            if (!k.includes("Other"))
+            if (!k.includes("Other")){
+                dec = dec.replace("ro_", "");
                 obj[dec] = choices[k];
+            }
+
             return obj;
+
         }, {});
     }
 }

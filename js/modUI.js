@@ -4,7 +4,7 @@ const modUI = {
      * override_choices variable injected via backend before page load
      */
     alterHTML() {
-        const html_options = override_choices.map((val) => `<option id="override_${encodeURI(val)}" value="${encodeURI(val)}">${val}</option>`).join('');
+        const html_options = override_choices.map((val) => `<option id="override_${encodeURI(val)}" value="ro_${encodeURI(val)}">${val}</option>`).join('');
         const dropdown = `
             <select id="change_reason" class="form-group form-control" aria-label="change_reason">
                <option selected disabled hidden>Select ...</option>
@@ -22,7 +22,7 @@ const modUI = {
 
     bindOtherEvents() {
         $('#change_reason').on("change", function () {
-            if ($(this).val() === 'Other') {
+            if ($(this).val() === 'ro_Other') {
                 $('#other_reason').removeAttr('hidden');
             } else {
                 $('#other_reason').prop('hidden', true);
@@ -35,7 +35,7 @@ const modUI = {
         $('#other_input').on("input", function () {
             const selected = $('#override_Other');
             let stringify = encodeURI($(this).val())
-            selected.val('Other_' + stringify); //add to value
+            selected.val('ro_Other_' + stringify); //add to value
         });
     }
 }

@@ -94,7 +94,7 @@ class ChangeReasonOverride extends AbstractExternalModule
         $ret = [];
         if (db_num_rows($q) > 0) {
             while ($row = db_fetch_assoc($q)) {
-                if (empty($row['change_reason']))
+                if (empty($row['change_reason']) || !str_contains($row['change_reason'], 'ro_'))
                     continue;
 
                 if (array_key_exists($row['change_reason'], $ret))
