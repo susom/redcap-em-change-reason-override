@@ -22,7 +22,6 @@ const modUI = {
 
     bindOtherEvents() {
         $('#change_reason').on("change", function () {
-            console.log($(this).val())
             if ($(this).val() === 'ro_Other') {
                 $('#other_reason').removeAttr('hidden');
             } else {
