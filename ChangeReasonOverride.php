@@ -54,6 +54,7 @@ class ChangeReasonOverride extends AbstractExternalModule
                 $parsedChoices = json_encode($parsedChoices);
                 $jsFilePath = $this->getUrl('js/script.js'); //Override js file
 
+                print "<style> .inv {position: absolute !important; top: -9999px !important; left: -9999px !important; } </style>";
                 print "<script type='text/javascript'>var override_choices = $parsedChoices; </script>";
                 print "<script type='module' src=$jsFilePath></script>";
 
@@ -94,13 +95,14 @@ class ChangeReasonOverride extends AbstractExternalModule
         $ret = [];
         if (db_num_rows($q) > 0) {
             while ($row = db_fetch_assoc($q)) {
-                if (empty($row['change_reason']) || !str_contains($row['change_reason'], 'ro_'))
-                    continue;
+                if (str_contains($row['change_reason'], 'ro_') || str_contains($row['change_reason'], 'oth_'))
+                {
+                    if (array_key_exists($row['change_reason'], $ret))
+                        $ret[$row['change_reason']] += 1;
+                    else
+                        $ret[$row['change_reason']] = 1;
+                }
 
-                if (array_key_exists($row['change_reason'], $ret))
-                    $ret[$row['change_reason']] += 1;
-                else
-                    $ret[$row['change_reason']] = 1;
             }
         } else {
             $this->emError('No data was found for change reason choices');

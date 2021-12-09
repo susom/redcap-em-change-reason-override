@@ -1,11 +1,11 @@
 $(document).ready(function () {
     //choices injected from backend
-    if(choices){
+    if (choices) {
         let otherChoices = parseChoices('Other', choices);
         let regularChoices = parseChoices('', choices);
         generateVisualization(regularChoices, otherChoices);
-        $("#code_display").html(JSON.stringify({'Other':otherChoices,'Reg':regularChoices}, null, 2));
-    }else{
+        $("#code_display").html(JSON.stringify({'Other': otherChoices, 'Reg': regularChoices}, null, 2));
+    } else {
         $('#error').removeClass('hidden');
     }
 });
@@ -14,9 +14,12 @@ const parseChoices = (type, choices) => {
     if (type === 'Other') {
         return Object.keys(choices).reduce((obj, k) => {
             let dec = decodeURI(k);
-            if (dec.includes("Other")) {
+            if (dec.includes("Other") || dec.includes("oth_")) {
                 dec = dec.replace("ro_Other_", "");
-                obj[dec] = choices[k];
+                dec = dec.replace("oth_", "")
+
+                if (dec)
+                    obj[dec] = choices[k];
             }
 
             return obj;
@@ -25,9 +28,12 @@ const parseChoices = (type, choices) => {
     } else {
         return Object.keys(choices).reduce((obj, k) => {
             let dec = decodeURI(k);
-            if (!k.includes("Other")){
+            if (!k.includes("Other") && !k.includes("oth_")) {
                 dec = dec.replace("ro_", "");
                 obj[dec] = choices[k];
+
+                if (dec)
+                    obj[dec] = choices[k];
             }
 
             return obj;
@@ -66,7 +72,7 @@ const generateVisualization = (data, data2) => {
     if (Object.keys(data).length === 0)
         $('#error').removeClass('hidden');
 
-    if (Object.keys(data2).length === 0){
+    if (Object.keys(data2).length === 0) {
         $('#error_other').removeClass('hidden');
         $('#otherChart').addClass('hidden');
     }
@@ -102,6 +108,14 @@ const generateVisualization = (data, data2) => {
             },
             scales: {
                 x: {
+                    ticks: {
+                        callback: function (value, index, values) {
+                            if (this.getLabelForValue(value).length > 20)
+                                return this.getLabelForValue(value).substring(0, 17) + '...';
+                            else
+                                return this.getLabelForValue(value);
+                        }
+                    },
                     stacked: true,
                 },
                 y: {
@@ -146,7 +160,16 @@ const generateVisualization = (data, data2) => {
                         precision: 0
                     }
                 },
-
+                x: {
+                    ticks: {
+                        callback: function (value, index, values) {
+                            if (this.getLabelForValue(value).length > 20)
+                                return this.getLabelForValue(value).substring(0, 17) + '...';
+                            else
+                                return this.getLabelForValue(value);
+                        }
+                    }
+                }
             }
         }
 
